@@ -23,33 +23,37 @@ app.post("/verify-app-check-token", async (req, res) => {
     console.log(req.body);
     const token = req.body.appCheckToken;
     const playFabId = req.body.playFabId;
-
+    const updateData = {
+      PlayFabId: playFabId,
+      Data: { verified: "false" },
+    };
     if (!token || !playFabId) {
       return res.status(400).send({ error: "Token or PlayFabId is missing" });
     }
     // Verify Firebase App Check token
     const decodedToken = await admin.appCheck().verifyToken(token);
-
+    console.log(decodedToken);
     if (decodedToken) {
       // Store "verified" in PlayFab readonly user data
-      const updateData = {
-        PlayFabId: playFabId,
-        Data: { verified: "true" },
-      };
-
-      PlayFab.UpdateUserReadOnlyData(updateData, (error, result) => {
-        if (error) {
-          return res.status(500).send({ error: error.errorMessage });
-        }
-        return res.send({ success: true });
-      });
+      updateData.Data = { verified: "false" };
+      updateUser(updateData);
     } else {
+      console.log("invalid token");
       return res.status(401).send({ error: "Invalid token" });
     }
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }
 });
+
+const updateUser = () => {
+  PlayFab.UpdateUserReadOnlyData(updateData, (error, result) => {
+    if (error) {
+      return res.status(500).send({ error: error.errorMessage });
+    }
+    return res.send({ success: true });
+  });
+};
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
