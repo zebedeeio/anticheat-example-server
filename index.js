@@ -42,6 +42,7 @@ app.post("/verify-app-check-token", async (req, res) => {
       return res.status(401).send({ error: "Invalid token" });
     }
   } catch (error) {
+    console.error(error);
     return res.status(500).send({ error: error.message });
   }
 });
