@@ -1,7 +1,6 @@
 const express = require("express");
 const admin = require("firebase-admin");
 const PlayFab = require("playfab-sdk");
-var PlayFabClient = playfab.PlayFabClient;
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +15,7 @@ admin.initializeApp({
 PlayFab.settings.titleId = "E6240";
 PlayFab.settings.developerSecretKey =
   "IAIFIIFBHJXJMME8JBGY99HW4GMD1PCWF1J4BEAPNGMN64BHXX";
+var PlayFabClient = PlayFab.PlayFabClient;
 app.use(bodyParser.json());
 app.use(express.json());
 
