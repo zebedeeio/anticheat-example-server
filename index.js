@@ -1,13 +1,13 @@
 const express = require("express");
 const axios = require("axios");
 const admin = require("firebase-admin");
-const PlayFab = require("playfab-sdk/PlayFabServer");
+const PlayFab = require("playfab-sdk");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Initialize Firebase admin SDK
-const serviceAccount = require("./path-to-service-account-key.json");
+const serviceAccount = require("./flappysats-ec2c0-942613c139cf.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });

@@ -9,5 +9,11 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.0",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.10.1",
+    "playfab-sdk": "^2.134.230818"
+  }
 }
