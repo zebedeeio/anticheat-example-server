@@ -30,13 +30,18 @@ app.post("/verify-app-check-token", async (req, res) => {
     if (!token || !playFabId) {
       return res.status(400).send({ error: "Token or PlayFabId is missing" });
     }
+
+    if (token === "error") {
+      updateUser(updateData, res);
+      return;
+    }
     // Verify Firebase App Check token
     const decodedToken = await admin.appCheck().verifyToken(token);
     console.log(decodedToken);
     if (decodedToken) {
       // Store "verified" in PlayFab readonly user data
-      updateData.Data = { verified: "false" };
-      updateUser(updateData);
+      updateData.Data = { verified: "true" };
+      updateUser(updateData, res);
     } else {
       console.log("invalid token");
       return res.status(401).send({ error: "Invalid token" });
@@ -47,7 +52,7 @@ app.post("/verify-app-check-token", async (req, res) => {
   }
 });
 
-const updateUser = () => {
+const updateUser = (res) => {
   PlayFab.UpdateUserReadOnlyData(updateData, (error, result) => {
     if (error) {
       return res.status(500).send({ error: error.errorMessage });
