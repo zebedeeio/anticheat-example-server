@@ -16,6 +16,7 @@ PlayFab.settings.titleId = "E6240";
 PlayFab.settings.developerSecretKey =
   "IAIFIIFBHJXJMME8JBGY99HW4GMD1PCWF1J4BEAPNGMN64BHXX";
 var PlayFabClient = PlayFab.PlayFabClient;
+var PlayFabServer = PlayFab.PlayFabServer;
 app.use(bodyParser.json());
 app.use(express.json());
 
@@ -54,7 +55,7 @@ app.post("/verify-app-check-token", async (req, res) => {
 });
 
 const updateUser = (updateData, res) => {
-  PlayFabClient.UpdateUserReadOnlyData(updateData, (error, result) => {
+  PlayFabServer.UpdateUserInternalData(updateData, (error, result) => {
     if (error) {
       return res.status(500).send({ error: error.errorMessage });
     }
