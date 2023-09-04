@@ -14,7 +14,8 @@ admin.initializeApp({
 
 // PlayFab settings
 PlayFab.settings.titleId = "E6240";
-PlayFab.settings.developerSecretKey = "YOUR_PLAYFAB_SECRET_KEY";
+PlayFab.settings.developerSecretKey =
+  "IAIFIIFBHJXJMME8JBGY99HW4GMD1PCWF1J4BEAPNGMN64BHXX";
 
 app.use(express.json());
 
