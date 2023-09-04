@@ -1,6 +1,7 @@
 const express = require("express");
 const admin = require("firebase-admin");
 const PlayFab = require("playfab-sdk");
+var PlayFabClient = playfab.PlayFabClient;
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -53,7 +54,7 @@ app.post("/verify-app-check-token", async (req, res) => {
 });
 
 const updateUser = (updateData, res) => {
-  PlayFab.UpdateUserData(updateData, (error, result) => {
+  PlayFabClient.UpdateUserReadOnlyData(updateData, (error, result) => {
     if (error) {
       return res.status(500).send({ error: error.errorMessage });
     }
