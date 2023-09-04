@@ -16,11 +16,12 @@ admin.initializeApp({
 PlayFab.settings.titleId = "E6240";
 PlayFab.settings.developerSecretKey =
   "IAIFIIFBHJXJMME8JBGY99HW4GMD1PCWF1J4BEAPNGMN64BHXX";
-
+app.use(bodyParser.json());
 app.use(express.json());
 
 app.post("/verify-app-check-token", async (req, res) => {
-  const token = req.body.token;
+  console.log(body);
+  const token = req.body.appCheckToken;
   const playFabId = req.body.playFabId;
 
   if (!token || !playFabId) {
