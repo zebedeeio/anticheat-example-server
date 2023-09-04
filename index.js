@@ -19,15 +19,14 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 app.post("/verify-app-check-token", async (req, res) => {
-  console.log(body);
-  const token = req.body.appCheckToken;
-  const playFabId = req.body.playFabId;
-
-  if (!token || !playFabId) {
-    return res.status(400).send({ error: "Token or PlayFabId is missing" });
-  }
-
   try {
+    console.log(req.body);
+    const token = req.body.appCheckToken;
+    const playFabId = req.body.playFabId;
+
+    if (!token || !playFabId) {
+      return res.status(400).send({ error: "Token or PlayFabId is missing" });
+    }
     // Verify Firebase App Check token
     const decodedToken = await admin.appCheck().verifyToken(token);
 
