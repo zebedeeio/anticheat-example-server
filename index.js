@@ -52,7 +52,7 @@ app.post("/verify-app-check-token", async (req, res) => {
   }
 });
 
-const updateUser = (res) => {
+const updateUser = (updateData, res) => {
   PlayFab.UpdateUserReadOnlyData(updateData, (error, result) => {
     if (error) {
       return res.status(500).send({ error: error.errorMessage });
