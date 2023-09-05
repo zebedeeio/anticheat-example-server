@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.
+
+flappysats-ec2c0-942613c139cf.json
+.flappysats-ec2c0-942613c139cf.json

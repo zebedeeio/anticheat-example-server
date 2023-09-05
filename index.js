@@ -6,16 +6,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Initialize Firebase admin SDK
-const serviceAccount = require("./flappysats-ec2c0-942613c139cf.json");
+const serviceAccount = require("./myserviceaccountjson.json"); //Create a firebase service account and add the json file to the root directory and update the file name here
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
 // PlayFab settings
-PlayFab.settings.titleId = "E6240";
-PlayFab.settings.developerSecretKey =
-  "IAIFIIFBHJXJMME8JBGY99HW4GMD1PCWF1J4BEAPNGMN64BHXX";
-var PlayFabClient = PlayFab.PlayFabClient;
+PlayFab.settings.titleId = "TITLEID"; // CHANGE THIS WITH YOUR TITLEID
+PlayFab.settings.developerSecretKey = "KEY"; //ADD YOUR PLAYFAB DEVELOPER SECRET KEY
 var PlayFabServer = PlayFab.PlayFabServer;
 app.use(bodyParser.json());
 app.use(express.json());
